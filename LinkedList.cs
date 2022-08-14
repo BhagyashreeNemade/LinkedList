@@ -73,6 +73,42 @@ namespace LinkedList
                 }
             }
         }
+        public bool DeleteAtSpecifiedPosition(int data)
+        {
+            Node previous = null;
+            Node temp = this.head;
+            if (this.head == null)
+            {
+                Console.WriteLine("Linkedlist is empty");
+                return false;
+            }
+            else
+            {
+                while (temp != null)
+                {
+                    if (temp.data == data)
+                    {
+                        previous.next = temp.next;
+                        temp.next = null;
+                        return true;
+                    }
+                    previous = temp;
+                    temp = temp.next;
+                }
+                return false;
+            }
+        }
+        public int LinkedlistCount()
+        {
+            int count = 0;
+            Node temp = this.head;
+            while (temp != null)
+            {
+                count++;
+                temp = temp.next;
+            }
+            return count;
+        }
         public void DisplayList()
         {
             int count = 0;

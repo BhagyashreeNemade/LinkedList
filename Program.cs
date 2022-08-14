@@ -7,12 +7,13 @@
             LinkedList linked = new LinkedList();
             linked.InsertAtLast(56);
             linked.InsertAtLast(30);
+            linked.InsertAtLast(40);
             linked.InsertAtLast(70);
             linked.DisplayList();
-            linked.InsertAtSpecifiedposition(30, 40);
-            linked.search(30);
+            linked.DeleteAtSpecifiedPosition(40);
+            Console.WriteLine("The length of Linkedlist is " + linked.LinkedlistCount());
             linked.DisplayList();
-            
+
         }
     }
 }
