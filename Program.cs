@@ -4,15 +4,15 @@
     {
         static void Main(string[] args)
         {
-            Node node = new Node(56);
-            LinkedList list = new LinkedList();
-            list.Add(56);
-            list.Add(30);
-            list.Add(70);
-            list.Display();
-            Node newNode = list.Search(30);
-            Console.WriteLine(newNode.data);
-
+            LinkedList linked = new LinkedList();
+            linked.InsertAtLast(56);
+            linked.InsertAtLast(30);
+            linked.InsertAtLast(70);
+            linked.DisplayList();
+            linked.InsertAtSpecifiedposition(30, 40);
+            linked.search(30);
+            linked.DisplayList();
+            
         }
     }
 }

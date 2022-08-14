@@ -8,110 +8,81 @@ namespace LinkedList
 {
     public class LinkedList
     {
-        internal Node head;
-        internal void Add(int data)
+        //Creating Both Head and Tail reference
+        public Node head;
+        public Node tail;
+        public void InsertAtLast(int data)
         {
-            Node node = new Node(data);
-
-            if (this.head == null)
-            {
-                this.head = node;
-            }
-            else
-            {
-                Node temp = head;
-                while (temp.next != null)
-                {
-                    temp = temp.next;
-                }
-                temp.next = node;
-            }
-            Console.WriteLine("{0} inserted into linked list", node.data);
-        }
-
-        public void Display()
-        {
-            Node temp = this.head;
-            if (temp == null)
-            {
-                Console.WriteLine("Linked list is empty");
-                return;
-            }
-            while (temp != null)
-            {
-                Console.Write(temp.data + " ");
-                temp = temp.next;
-            }
-        }
-        public Node InsertaAtaParticularPosition(int position, int data)
-        {
-            if (position < 1)
-            {
-                Console.WriteLine("Invalid Position");
-            }
-            if (position == 1)
-            {
-                var newNode = new Node(data);
-                newNode.next = this.head;
-                head = newNode;
-            }
-            else
-            {
-                while (position-- != 0)
-                {
-                    if (position == 1)
-                    {
-                        Node node = new Node(data);
-                        node.next = this.head.next;
-                        head.next = node;
-                        break;
-                    }
-                    head = head.next;
-                }
-                if (position != 1)
-                    Console.WriteLine("Position out of range");
-            }
-            return head;
-        }
-        internal Node RemoveFirstnode()
-        {
-            if (this.head == null)
-            {
-                return null;
-            }
-            this.head = this.head.next;
-            return this.head;
-        }
-        internal Node RemovelastNode()
-        {
+            Node newnode = new Node(data);
             if (head == null)
             {
-                return null;
+                //If the list is empty then new node will assign to head and tail
+                this.head = this.tail = newnode;
             }
-            if (head.next == null)
+            else
             {
-                return null;
+                //linking newnode to tail
+                this.tail.next = newnode;
+                //changeing the reference
+                this.tail = newnode;
             }
-            Node newnode = head;
-            while (newnode.next.next != null)
-            {
-                newnode = newnode.next;
-            }
-            newnode.next = null;
-            return null;
         }
-        public Node Search(int value)
+        public int search(int data)
         {
-            while (this.head != null)
+            Node temp = this.head;
+            if (this.head == null)
             {
-                if (this.head.data == value)
-                {
-                    return this.head;
-                }
-                this.head = this.head.next;
+                Console.WriteLine("LinkedList is empty");
+                return default;
             }
-            return null;
-
+            else
+            {
+                while (temp != null)
+                {
+                    if (temp.data == data)
+                    {
+                        Console.WriteLine("The value {0} is Present in Linked List", data);
+                        return data;
+                    }
+                    temp = temp.next;
+                }
+                Console.WriteLine("The value {0} is Present in Linked List", data);
+                return default;
+            }
+        }
+        //here we taking two parameters one for value and other for reference
+        public void InsertAtSpecifiedposition(int reference, int data)
+        {
+            Node newnode = new Node(data);
+            Node temp = this.head;
+            if (this.head == null)
+            {
+                this.head = this.tail = newnode;
+            }
+            else
+            {
+                while (temp != null)
+                {
+                    if (temp.data == reference)
+                    {
+                        newnode.next = temp.next;
+                        temp.next = newnode;
+                        break;
+                    }
+                    temp = temp.next;
+                }
+            }
+        }
+        public void DisplayList()
+        {
+            int count = 0;
+            Node temp = this.head;
+            while (temp != null)
+            {
+                Console.WriteLine("At {0} Index We Have {1} value", count, temp.data);
+                count++;
+                temp = temp.next;
+            }
         }
     }
 }
