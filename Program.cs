@@ -5,14 +5,13 @@
         static void Main(string[] args)
         {
             LinkedList linked = new LinkedList();
-            linked.InsertAtLast(56);
-            linked.InsertAtLast(30);
-            linked.InsertAtLast(40);
-            linked.InsertAtLast(70);
+            linked.InsertForSort(56);
+            linked.InsertForSort(30);
+            linked.InsertForSort(40);
+            linked.InsertForSort(70);
+            linked.ValueAre();
             linked.DisplayList();
-            linked.DeleteAtSpecifiedPosition(40);
-            Console.WriteLine("The length of Linkedlist is " + linked.LinkedlistCount());
-            linked.DisplayList();
+            Console.ReadLine();
 
         }
     }

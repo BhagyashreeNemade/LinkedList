@@ -11,106 +11,52 @@ namespace LinkedList
         //Creating Both Head and Tail reference
         public Node head;
         public Node tail;
-        public void InsertAtLast(int data)
+        //For storing user values
+        public List<int> array = new List<int>();
+        public void InsertForSort(int data)
         {
+            array.Add(data);
             Node newnode = new Node(data);
             if (head == null)
             {
-                //If the list is empty then new node will assign to head and tail
                 this.head = this.tail = newnode;
             }
             else
             {
-                //linking newnode to tail
-                this.tail.next = newnode;
-                //changeing the reference
-                this.tail = newnode;
-            }
-        }
-        public int search(int data)
-        {
-            Node temp = this.head;
-            if (this.head == null)
-            {
-                Console.WriteLine("LinkedList is empty");
-                return default;
-            }
-            else
-            {
-                while (temp != null)
+                Node previous = null;
+                Node current = this.head;
+                while (current != null && current.data < data)
                 {
-                    if (temp.data == data)
-                    {
-                        Console.WriteLine("The value {0} is Present in Linked List", data);
-                        return data;
-                    }
-                    temp = temp.next;
+                    previous = current;
+                    current = current.next;
                 }
-                Console.WriteLine("The value {0} is Present in Linked List", data);
-                return default;
-            }
-        }
-        //here we taking two parameters one for value and other for reference
-        public void InsertAtSpecifiedposition(int reference, int data)
-        {
-            Node newnode = new Node(data);
-            Node temp = this.head;
-            if (this.head == null)
-            {
-                this.head = this.tail = newnode;
-            }
-            else
-            {
-                while (temp != null)
+                if (current == this.head)
                 {
-                    if (temp.data == reference)
-                    {
-                        newnode.next = temp.next;
-                        temp.next = newnode;
-                        break;
-                    }
-                    temp = temp.next;
+                    //Insert At Start logic
+                    newnode.next = current;
+                    this.head = newnode;//update head
+                }
+                else
+                {
+                    //Insert At Middle and Last logic
+                    newnode.next = current;
+                    previous.next = newnode;
+                    this.tail = newnode;//update tail
                 }
             }
         }
-        public bool DeleteAtSpecifiedPosition(int data)
+        //Displaying user values 
+        public void ValueAre()
         {
-            Node previous = null;
-            Node temp = this.head;
-            if (this.head == null)
+            Console.WriteLine("The values given by user");
+            foreach (int i in array)
             {
-                Console.WriteLine("Linkedlist is empty");
-                return false;
+                Console.Write(i + " , ");
             }
-            else
-            {
-                while (temp != null)
-                {
-                    if (temp.data == data)
-                    {
-                        previous.next = temp.next;
-                        temp.next = null;
-                        return true;
-                    }
-                    previous = temp;
-                    temp = temp.next;
-                }
-                return false;
-            }
-        }
-        public int LinkedlistCount()
-        {
-            int count = 0;
-            Node temp = this.head;
-            while (temp != null)
-            {
-                count++;
-                temp = temp.next;
-            }
-            return count;
         }
         public void DisplayList()
         {
+            Console.WriteLine("\nValues  In Linkedlist Now In Assending Order ");
             int count = 0;
             Node temp = this.head;
             while (temp != null)
