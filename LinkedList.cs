@@ -82,5 +82,23 @@ namespace LinkedList
             this.head = this.head.next;
             return this.head;
         }
+        internal Node RemovelastNode()
+        {
+            if (head == null)
+            {
+                return null;
+            }
+            if (head.next == null)
+            {
+                return null;
+            }
+            Node newnode = head;
+            while (newnode.next.next != null)
+            {
+                newnode = newnode.next;
+            }
+            newnode.next = null;
+            return null;
+        }
     }
 }
