@@ -43,5 +43,44 @@ namespace LinkedList
                 temp = temp.next;
             }
         }
+        public Node InsertaAtaParticularPosition(int position, int data)
+        {
+            if (position < 1)
+            {
+                Console.WriteLine("Invalid Position");
+            }
+            if (position == 1)
+            {
+                var newNode = new Node(data);
+                newNode.next = this.head;
+                head = newNode;
+            }
+            else
+            {
+                while (position-- != 0)
+                {
+                    if (position == 1)
+                    {
+                        Node node = new Node(data);
+                        node.next = this.head.next;
+                        head.next = node;
+                        break;
+                    }
+                    head = head.next;
+                }
+                if (position != 1)
+                    Console.WriteLine("Position out of range");
+            }
+            return head;
+        }
+        internal Node RemoveFirstnode()
+        {
+            if (this.head == null)
+            {
+                return null;
+            }
+            this.head = this.head.next;
+            return this.head;
+        }
     }
 }
